@@ -1,4 +1,4 @@
-create_driver <- function(download_dir = getwd(),
+create_driver <- function(download_dir = tempdir(),
                           port = netstat::free_port()) {
   fprof <- RSelenium::makeFirefoxProfile(list(
     browser.download.manager.showWhenStarting = FALSE,
