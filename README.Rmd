@@ -1,0 +1,68 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# readmits
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/MattCowgill/readmits/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MattCowgill/readmits/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+`readmits` makes it possible to download and import data from the Melbourne Institute Time Series collection. Note that access to this collection is not free, and a username and password is required.
+
+## Installation
+
+You can install the development version of readmits from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("MattCowgill/readmits", dependencies = TRUE)
+```
+
+Note that `readmits` currently requies that the [Firefox browser](https://www.mozilla.org/en-US/firefox/new/) is installed on your system. 
+
+## Example
+
+With `read_mits()`, we can download the Wages Growth and Unemployment Expectations tables from the Melbourne Institute collection. **Note that only these two tables are currently supported. Contributions to this package are welcome.** 
+
+```{r get-data}
+library(readmits)
+
+mits_data <- read_mits()
+
+mits_data
+```
+
+Because `read_mits()` returns a tidy tibble, it's straightforward to visualise the results. For example:
+
+```{r viz, echo = FALSE}
+library(ggplot2)
+mits_data %>%
+  dplyr::filter(series == "Unemployment Expectations Index") %>%
+  ggplot(aes(x = date, y = value)) +
+  geom_line(col = "blue") +
+  theme_minimal() +
+  theme(axis.title = element_blank()) +
+  labs(
+    subtitle = "Unemployment expectations index",
+    caption = "Source: Melbourne Institute"
+  )
+```
+
+## Lifecycle
+
+This package is **experimental**. I do not expect to submit it to CRAN. I made it primarily for my own use, but am making it available for anyone else who may find it useful. Bear in mind that changes to the Melbourne Institute Subscriber Services website could render this package inoperable.
+
+
