@@ -56,6 +56,8 @@ You can also supply the username and password directly when
 calling \code{read_mits()}.
 }
 \examples{
-\donttest{read_mits()}
+\dontrun{
+read_mits()
+}
 
 }

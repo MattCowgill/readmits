@@ -36,7 +36,9 @@
 #' calling `read_mits()`.
 #'
 #' @examples
-#' \donttest{read_mits()}
+#' \dontrun{
+#' read_mits()
+#' }
 #'
 #' @export
 
